@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Buscador</title>
+    <style>
+        body {
+            background-color: #f1f1f1;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            color: #ff6600;
+        }
+
+        form {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 600px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            margin-top: 10px;
+        }
+
+        button[type="submit"] {
+            background-color: #ff6600;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #ff5500;
+        }
+        .category-select {
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            font-size: 14px;
+            border-radius: 4px;
+            margin: 2%;
+            }
+
+            .category-select:focus {
+            outline: none;
+            border-color: #4CAF50;
+            }
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Vetements Find</h1>
+    </header>
+
+    <form action="/procesar_buscador" method="POST">
+        <input type="text" name="query" placeholder="Ingresa tu búsqueda">
+        
+        <label>
+            <input type="radio" name="condition" value="New">
+            Nuevo (New)
+        </label>
+        <label>
+            <input type="radio" name="condition" value="NewOther">
+            Nuevo (otros) (New Other)
+        </label>
+        <label>
+            <input type="radio" name="condition" value="ManufacturerRefurbished">
+            Remanufacturado (Manufacturer Refurbished)
+        </label>
+        <label>
+            <input type="radio" name="condition" value="Used">
+            Usado (Used)
+        </label>
+        <label>
+            <input type="radio" name="condition" value="VeryGood">
+            Muy bueno (Very Good)
+        </label>
+        <label>
+            <input type="radio" name="condition" value="Good">
+            Bueno (Good)
+        </label>
+        <label>
+            <input type="radio" name="condition" value="Acceptable">
+            Aceptable (Acceptable)
+        </label>
+        
+        <button type="submit">Buscar</button>
+        <select name="category" class="category-select">
+            <option value="">Todas las categorías</option>
+            <option value="moda-hombre">Moda Hombre</option>
+            <option value="moda-mujer">Moda Mujer</option>
+          </select>
+    </form>
+    
+</body>
+</html>

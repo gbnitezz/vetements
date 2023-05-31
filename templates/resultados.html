@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lista de productos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333333;
+      margin: 0;
+      padding: 20px;
+    }
+    
+    h1 {
+      text-align: center;
+    }
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    section {
+        width: 300px; /* Ajusta el ancho deseado para cada sección */
+        margin: 10px;
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #ccc;
+        background-color: #ffffff;
+        border-radius: 5px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        height: 500px;
+      }
+    
+    h2 {
+      color: #ff6600;
+      font-size: 20px;
+      margin-top: 10;
+      margin-bottom: 10px;
+    }
+    
+    p {
+      font-size: 16px;
+      margin-top: 0;
+    }
+    a{
+        text-decoration: none;
+    }
+    img {
+      width: 60%;
+      height: 60%;
+    }
+    .pagination a {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 0 5px;
+            background-color: #f1f1f1;
+            color: #333;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .pagination a:hover {
+            background-color: #ddd;
+        }
+
+        /* Estilos CSS para el botón de página activa */
+        .pagination .active {
+            background-color: #ff6600;
+            color: #fff;
+        }
+  </style>
+</head>
+<body>
+  <h1>Resultados de búsqueda</h1>
+
+  <div class="container">
+      {% for objetos in objetos_final %}
+          <section>
+            {% if objetos.viewItemURL %}
+            <a href="{{ objetos.viewItemURL }}">
+                {% if objetos.galleryURL %}
+                    <img src="{{ objetos.galleryURL }}" alt="Imagen del producto">
+                {% endif %}
+                <h2>{{ objetos.title }}</h2>
+            </a>
+            <p>Precio: ${{ objetos.sellingStatus.currentPrice.value }}</p>
+            <p>Vendedor: {{ objetos.sellerInfo.sellerUserName }}</p>
+            <p>Proveedor: Ebay</p>
+        {% elif objetos.url %}
+            <a href="{{ objetos.url }}">
+                {% if objetos.photo %}
+                    <img src="{{ objetos.photo }}" alt="Imagen del producto">
+                {% endif %}
+                <h2>{{ objetos.title }}</h2>
+            </a>
+            <p>Precio: ${{ objetos.price }}</p>
+            <p>Proveedor: Vinted</p>
+        {% else %}
+            {% if objetos.nameGrailed %}
+              <a href="{{ objetos.offersGrailed['url'] }}">
+                {% if objetos.imageGrailed %}
+                    <img src="{{ objetos.imageGrailed }}" alt="Imagen del producto">
+                {% endif %}
+                <h2>{{ objetos.nameGrailed }} {{ objetos.brandGrailed['name'] }}</h2>
+            </a>
+            <p>Precio: ${{ objetos.offersGrailed['price'] }}</p>
+            <p>Proveedor: Grailed</p>
+            {% endif %}
+        {% endif %}
+
+          </section>
+      {% endfor %}
+  </div>
+</body>
+
+</html>
